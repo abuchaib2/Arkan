@@ -4,39 +4,68 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>سياسة الخصوصية | Privacy Policy - أركان ARKAN</title>
+  <meta name="description" content="وثيقة سياسة الخصوصية الرسمية لتطبيق أركان للتحقيق الجنائي (ARKAN: Criminal Investigation) المتوافقة مع سياسات متجر Google Play.">
+  <link rel="icon" type="image/png" href="app_icon.png">
+  <link rel="apple-touch-icon" href="app_icon.png">
+
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Cinzel:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Cinzel:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
     :root {
-      --bg: #0A0B0E;
-      --card-bg: #12141A;
-      --card-border: #262936;
+      --bg: #07080B;
+      --card-bg: #101218;
+      --border: #222634;
       --gold: #D4AF37;
-      --gold-light: #F3E5AB;
-      --gold-glow: rgba(212, 175, 55, 0.25);
-      --text: #F0F2F5;
-      --text-muted: #9AA0B2;
+      --gold-light: #F7E7A9;
+      --gold-glow: rgba(212, 175, 55, 0.28);
+      --gold-border: rgba(212, 175, 55, 0.45);
+      --text: #F2F4F8;
+      --text-muted: #959BAE;
+      --accent-blue: #38BDF8;
+      --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
     body {
-      font-family: 'Cairo', system-ui, -apple-system, sans-serif;
       background-color: var(--bg);
       color: var(--text);
       line-height: 1.8;
+      overflow-x: hidden;
       padding: 0 16px;
+      -webkit-font-smoothing: antialiased;
     }
 
+    /* Bilingual Typography */
+    html[lang="ar"] body {
+      font-family: 'Cairo', system-ui, -apple-system, sans-serif;
+    }
+    html[lang="en"] body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    }
+
+    /* Directional visibility toggles */
+    html[lang="ar"] .en-only { display: none !important; }
+    html[lang="en"] .ar-only { display: none !important; }
+
+    /* Navigation Header */
     header {
-      max-width: 900px;
-      margin: 30px auto 20px;
+      max-width: 960px;
+      margin: 24px auto 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding-bottom: 20px;
-      border-bottom: 1px solid var(--card-border);
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 16px;
     }
 
     .logo {
@@ -46,93 +75,160 @@
       text-decoration: none;
     }
 
-    .logo-badge {
-      width: 40px;
-      height: 40px;
-      background: linear-gradient(135deg, #2A2415, #12141A);
-      border: 1.5px solid var(--gold);
+    .logo-img-wrapper {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      padding: 2px;
+      background: linear-gradient(135deg, var(--gold), #262936);
+      box-shadow: 0 0 12px var(--gold-glow);
+    }
+
+    .logo-img {
+      width: 100%;
+      height: 100%;
       border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
+      object-fit: cover;
+      display: block;
     }
 
     .logo-title {
-      font-size: 18px;
+      font-size: 19px;
       font-weight: 900;
       color: var(--gold);
     }
 
-    .btn-back {
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .lang-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
       color: var(--gold-light);
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: var(--transition);
+    }
+
+    .lang-btn:hover {
+      background: rgba(212, 175, 55, 0.15);
+      border-color: var(--gold);
+      transform: translateY(-1px);
+    }
+
+    .btn-back {
+      color: var(--text-muted);
       text-decoration: none;
-      font-size: 14px;
+      font-size: 13.5px;
       font-weight: 700;
       display: inline-flex;
       align-items: center;
       gap: 6px;
       padding: 8px 16px;
       background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 8px;
-      transition: border-color 0.2s;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      transition: var(--transition);
     }
 
     .btn-back:hover {
       border-color: var(--gold);
+      color: var(--gold);
+      transform: translateY(-1px);
     }
 
+    /* Policy Container */
     .container {
-      max-width: 900px;
+      max-width: 960px;
       margin: 0 auto 60px;
       background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 20px;
-      padding: 40px 32px;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 44px 36px;
+      box-shadow: 0 15px 50px rgba(0,0,0,0.65);
+    }
+
+    .policy-header {
+      text-align: center;
+      margin-bottom: 36px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border);
     }
 
     h1 {
       color: var(--gold);
-      font-size: 28px;
+      font-size: 30px;
       font-weight: 900;
-      text-align: center;
-      margin-bottom: 6px;
+      margin-bottom: 12px;
+      line-height: 1.3;
     }
 
-    .meta {
-      text-align: center;
+    .meta-box {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 10px 20px;
+      font-size: 13.5px;
       color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    .meta-box code {
+      background: rgba(212, 175, 55, 0.12);
+      color: var(--gold-light);
+      padding: 2px 6px;
+      border-radius: 4px;
       font-size: 13px;
-      margin-bottom: 30px;
     }
 
     h2 {
       color: var(--gold-light);
-      font-size: 20px;
+      font-size: 21px;
       font-weight: 800;
-      margin: 28px 0 12px;
-      border-right: 3px solid var(--gold);
-      padding-right: 12px;
+      margin: 32px 0 14px;
+    }
+
+    html[lang="ar"] h2 {
+      border-right: 4px solid var(--gold);
+      padding-right: 14px;
+    }
+
+    html[lang="en"] h2 {
+      border-left: 4px solid var(--gold);
+      padding-left: 14px;
     }
 
     h3 {
       color: var(--text);
-      font-size: 16px;
+      font-size: 17px;
       font-weight: 700;
-      margin: 18px 0 8px;
+      margin: 22px 0 10px;
     }
 
     p, li {
-      color: var(--text-muted);
-      font-size: 14.5px;
-      margin-bottom: 12px;
+      color: #A9B0C2;
+      font-size: 15px;
+      margin-bottom: 14px;
+      line-height: 1.85;
     }
 
     ul {
-      padding-inline-start: 24px;
-      margin-bottom: 16px;
+      padding-inline-start: 26px;
+      margin-bottom: 18px;
+    }
+
+    li {
+      margin-bottom: 8px;
     }
 
     strong {
@@ -142,115 +238,253 @@
     a {
       color: var(--gold);
       text-decoration: underline;
+      transition: var(--transition);
     }
 
-    .divider {
-      height: 1px;
-      background: var(--card-border);
-      margin: 40px 0;
+    a:hover {
+      color: var(--gold-light);
     }
 
-    .en-section {
-      direction: ltr;
-      text-align: left;
+    .highlight-card {
+      background: rgba(212, 175, 55, 0.06);
+      border: 1px solid var(--gold-border);
+      border-radius: 14px;
+      padding: 18px 22px;
+      margin: 20px 0;
     }
 
-    .en-section h2 {
-      border-right: none;
-      border-left: 3px solid var(--gold);
-      padding-left: 12px;
+    .highlight-card p {
+      margin-bottom: 0;
+      color: var(--text);
+      font-weight: 600;
     }
 
+    /* Footer */
     footer {
       text-align: center;
-      padding: 30px 0;
+      padding: 36px 0;
       color: #636878;
-      font-size: 13px;
-      border-top: 1px solid var(--card-border);
-      max-width: 900px;
+      font-size: 13.5px;
+      border-top: 1px solid var(--border);
+      max-width: 960px;
       margin: 0 auto;
     }
+
+    @media (max-width: 640px) {
+      .container {
+        padding: 28px 20px;
+      }
+      h1 {
+        font-size: 24px;
+      }
+      h2 {
+        font-size: 18px;
+      }
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .header-actions {
+        width: 100%;
+        justify-content: space-between;
+      }
+    }
   </style>
+
+  <!-- Auto-language detection script -->
+  <script>
+    (function() {
+      const savedLang = localStorage.getItem('arkan_lang');
+      let lang = 'ar';
+      if (savedLang) {
+        lang = savedLang;
+      } else {
+        const navLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
+        if (navLang.startsWith('en')) {
+          lang = 'en';
+        } else {
+          lang = 'ar';
+        }
+      }
+      document.documentElement.lang = lang;
+      document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+    })();
+  </script>
 </head>
 <body>
+  <!-- Header -->
   <header>
     <a href="index.html" class="logo">
-      <div class="logo-badge">🔍</div>
-      <div class="logo-title">أركان للتحقيق الجنائي</div>
+      <div class="logo-img-wrapper">
+        <img src="app_icon.png" alt="ARKAN Icon" class="logo-img">
+      </div>
+      <div class="logo-title">
+        <span class="ar-only">أركان للتحقيق الجنائي</span>
+        <span class="en-only">ARKAN: Criminal Investigation</span>
+      </div>
     </a>
-    <a href="index.html" class="btn-back">➔ العودة للموقع الرسمي</a>
+
+    <div class="header-actions">
+      <button class="lang-btn" id="langToggleBtn" onclick="toggleLanguage()" aria-label="Toggle Language">
+        🌐 <span id="langBtnText">English</span>
+      </button>
+      <a href="index.html" class="btn-back">
+        <span class="ar-only">➔ العودة للموقع الرسمي</span>
+        <span class="en-only">➔ Back to Home</span>
+      </a>
+    </div>
   </header>
 
+  <!-- Policy Content Container -->
   <div class="container">
-    <h1>وثيقة سياسة الخصوصية الرسمية</h1>
-    <div class="meta">
-      تطبيق أركان للتحقيق الجنائي | ARKAN: Criminal Investigation<br>
-      معرف التطبيق: <code>com.arkan.detective</code> | تاريخ السريان: 20 نوفمبر 2026
+    <div class="policy-header">
+      <h1 class="ar-only">وثيقة سياسة الخصوصية الرسمية</h1>
+      <h1 class="en-only">Official Privacy Policy</h1>
+
+      <div class="meta-box">
+        <span class="ar-only">
+          تطبيق أركان للتحقيق الجنائي | معرّف الحزمة: <code>com.arkan.detective</code><br>
+          تاريخ السريان: 20 نوفمبر 2026 | البريد المعتمد: <code>detectivearkan@gmail.com</code>
+        </span>
+        <span class="en-only">
+          ARKAN: Criminal Investigation | Package ID: <code>com.arkan.detective</code><br>
+          Effective Date: November 20, 2026 | Official Support: <code>detectivearkan@gmail.com</code>
+        </span>
+      </div>
     </div>
 
-    <h2>[العربية] سياسة الخصوصية</h2>
-    <p>نحن في <strong>فريق تطوير أركان (ARKAN Team)</strong> نلتزم التزاماً صارماً بحماية خصوصية المستخدمين وبياناتهم الشخصية. توضح وثيقة سياسة الخصوصية هذه ماهية البيانات التي قد يتم جمعها أو معالجتها عند استخدامك لتطبيق "أركان للتحقيق الجنائي"، وكيفية استخدام هذه البيانات وحمايتها بما يتوافق مع سياسات متجر Google Play، اللائحة العامة لحماية البيانات (GDPR)، وقانون حماية خصوصية الأطفال على الإنترنت (COPPA).</p>
+    <!-- ARABIC CONTENT -->
+    <div class="ar-only">
+      <h2>مقدمة والتزام الخصوصية</h2>
+      <p>
+        نحن في <strong>فريق تطوير أركان (ARKAN Detective Team)</strong> نلتزم التزاماً صارماً بحماية خصوصية المستخدمين وبياناتهم الشخصية. توضح وثيقة سياسة الخصوصية هذه ماهية البيانات التي قد يتم جمعها أو معالجتها عند استخدامك لتطبيق "أركان للتحقيق الجنائي"، وكيفية استخدام هذه البيانات وحمايتها بما يتوافق مع سياسات متجر Google Play، اللائحة العامة لحماية البيانات (GDPR)، وقانون حماية خصوصية الأطفال على الإنترنت (COPPA).
+      </p>
 
-    <h3>1. البيانات التي لا نجمعها (عدم جمع البيانات الشخصية المباشرة)</h3>
-    <ul>
-      <li>التطبيق <strong>لا يطلب</strong> ولا يجمع أي بيانات شخصية حساسة مثل: الاسم الحقيقي، رقم الهاتف، عنوان البريد الإلكتروني، الحسابات البنكية، الموقع الجغرافي الدقيق (GPS)، أو جهات الاتصال.</li>
-      <li>التطبيق <strong>لا يصل</strong> إلى الكاميرا، الميكروفون، أو الملفات الخاصة بالهاتف خارج مساحة التخزين الخاصة بالتطبيق (Scoped Storage).</li>
-      <li>كافة أسماء المحققين والألقاب والمذكرات داخل اللعبة هي بيانات افتراضية تخزن محلياً فقط على جهاز المستخدم.</li>
-    </ul>
+      <div class="highlight-card">
+        <p>🔒 ملخص الأمان: التطبيق يعمل بدون طلب أي بيانات شخصية، وجميع قضاياك وملاحظاتك تخزن محلياً بالكامل على هاتفك دون مشاركتها مع أي جهة خارجية.</p>
+      </div>
 
-    <h3>2. التخزين المحلي للبيانات (Local Data Storage)</h3>
-    <ul>
-      <li>يتم حفظ تقدمك في القضايا الجنائية الـ 250، والحلول، ومذكرات المحقق، والأدلة المكتشفة، والإنجازات الجنائية، ورصيد العملات الافتراضية <strong>محلياً على جهازك</strong> باستخدام قاعدة بيانات مشفرة ومؤمنة (Room Database) ومخزن التفضيلات (SharedPreferences).</li>
-      <li>لا نقوم برفع أو مشاركة ملاحظاتك أو تحليلاتك الجنائية على أي خوادم خارجية غير مصرح بها.</li>
-    </ul>
+      <h3>1. البيانات التي لا نجمعها (عدم جمع البيانات الشخصية المباشرة - Zero PII)</h3>
+      <ul>
+        <li>التطبيق <strong>لا يطلب</strong> ولا يجمع أي بيانات شخصية حساسة مثل: الاسم القانوني، رقم الهاتف، عنوان البريد الإلكتروني، الحسابات المصرفية، الموقع الجغرافي الدقيق (GPS)، أو جهات الاتصال.</li>
+        <li>التطبيق <strong>لا يصل</strong> إلى الكاميرا، الميكروفون، أو الملفات الخاصة بالهاتف خارج مساحة التخزين الخاصة بالتطبيق (Scoped Storage).</li>
+        <li>كافة أسماء المحققين والألقاب والمذكرات داخل اللعبة هي بيانات افتراضية تخزن محلياً فقط على جهاز المستخدم.</li>
+      </ul>
 
-    <h3>3. خدمات الطرف الثالث والإعلانات (Third-Party Services & Ads)</h3>
-    <p>يستخدم التطبيق خدمات موثوقة من طرف ثالث قد تجمع معلومات تعريفية غير شخصية ومجهولة الهوية لتشغيل الخدمات والإعلانات:</p>
-    <ul>
-      <li><strong>إعلانات جوجل موبايل (Google AdMob):</strong> تُستخدم لعرض الإعلانات بمكافأة والإعلانات البينية والمدمجة. قد تجمع شبكة AdMob معرّف الإعلانات المجهول للجهاز (Google Advertising ID)، وعنوان IP، ومعلومات عامة عن الجهاز ونظام التشغيل لتحسين جودة الإعلانات ومنع الاحتيال وضمان الامتثال لسياسات Google Play. سياسة خصوصية Google: <a href="https://policies.google.com/privacy" target="_blank">policies.google.com/privacy</a></li>
-      <li><strong>منصة إدارة موافقة المستخدمين (Google UMP):</strong> نلتزم باللوائح الأوروبية (GDPR) بطلب موافقة المستخدم الصريحة لتخصيص الإعلانات، ويمكن للمستخدمين إدارة أو سحب موافقتهم في أي وقت من إعدادات التطبيق.</li>
-    </ul>
+      <h3>2. التخزين المحلي للبيانات (Local Data Storage)</h3>
+      <ul>
+        <li>يتم حفظ تقدمك في كافة القضايا الجنائية الـ 430، والحلول، ومذكرات المحقق، والأدلة المكتشفة، والإنجازات الجنائية، ورصيد العملات الافتراضية <strong>محلياً على جهازك</strong> باستخدام قاعدة بيانات مشفرة ومؤمنة (Room Database) ومخزن التفضيلات (SharedPreferences).</li>
+        <li>لا نقوم برفع أو مشاركة ملاحظاتك أو تحليلاتك الجنائية على أي خوادم خارجية غير مصرح بها.</li>
+      </ul>
 
-    <h3>4. حماية خصوصية الأطفال (COPPA Compliance)</h3>
-    <p>تطبيق أركان موجه لجمهور عام وعشاق ألغاز التحقيق الجنائي والألعاب الفكرية. نحن لا نجمع عن علم أو قصد أي معلومات تعريفية شخصية من الأطفال دون سن 13 عاماً، وتتوافق الإعلانات المعروضة مع ضوابط عائلة متجر Google Play.</p>
+      <h3>3. خدمات الطرف الثالث والإعلانات (Third-Party Services & Ads)</h3>
+      <p>يستخدم التطبيق خدمات موثوقة من طرف ثالث قد تجمع معلومات تعريفية غير شخصية ومجهولة الهوية لتشغيل الخدمات والإعلانات:</p>
+      <ul>
+        <li><strong>إعلانات جوجل موبايل (Google AdMob):</strong> تُستخدم لعرض الإعلانات بمكافأة والإعلانات البينية والمدمجة. قد تجمع شبكة AdMob معرّف الإعلانات المجهول للجهاز (Google Advertising ID)، وعنوان IP، ومعلومات عامة عن الجهاز ونظام التشغيل لتحسين جودة الإعلانات ومنع الاحتيال وضمان الامتثال لسياسات Google Play. سياسة خصوصية Google: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a></li>
+        <li><strong>منصة إدارة موافقة المستخدمين (Google UMP):</strong> نلتزم باللوائح الأوروبية (GDPR) بطلب موافقة المستخدم الصريحة لتخصيص الإعلانات، ويمكن للمستخدمين إدارة أو سحب موافقتهم في أي وقت من إعدادات التطبيق.</li>
+      </ul>
 
-    <h3>5. حقوق المستخدم وأمان البيانات</h3>
-    <ul>
-      <li><strong>تصفير البيانات:</strong> يتيح التطبيق للاعب خياراً كاملاً وصريحاً لتصفير وتهيئة كافة ملفات القضايا والتقدم في أي وقت بنقرة واحدة عبر إعدادات مركز العمليات.</li>
-      <li><strong>إلغاء التثبيت:</strong> يؤدي حذف التطبيق من جهازك إلى مسح كافة البيانات والملاحظات والتقدم المخزن محلياً بشكل نهائي وفوري.</li>
-    </ul>
+      <h3>4. حماية خصوصية الأطفال (COPPA Compliance)</h3>
+      <p>تطبيق أركان موجه لجمهور عام وعشاق ألغاز التحقيق الجنائي والألعاب الفكرية. نحن لا نجمع عن علم أو قصد أي معلومات تعريفية شخصية من الأطفال دون سن 13 عاماً، وتتوافق الإعلانات المعروضة مع ضوابط عائلة متجر Google Play.</p>
 
-    <h3>6. التواصل معنا</h3>
-    <p>إذا كانت لديك أي استفسارات أو أسئلة تتعلق بسياسة الخصوصية، يسعدنا تواصلك معنا عبر البريد الإلكتروني المعتمد للدعم: <strong>support@arkan-detective.com</strong></p>
+      <h3>5. حقوق المستخدم وأمان البيانات</h3>
+      <ul>
+        <li><strong>تصفير البيانات:</strong> يتيح التطبيق للاعب خياراً كاملاً وصريحاً لتصفير وتهيئة كافة ملفات القضايا والتقدم في أي وقت بنقرة واحدة عبر إعدادات مركز العمليات، مع رسالة تأكيد لحماية بيانات اللاعب من الحذف غير المقصود.</li>
+        <li><strong>إلغاء التثبيت:</strong> يؤدي حذف التطبيق من جهازك إلى مسح كافة البيانات والملاحظات والتقدم المخزن محلياً بشكل نهائي وفوري.</li>
+      </ul>
 
-    <div class="divider"></div>
+      <h3>6. التواصل معنا والدعم الفني</h3>
+      <p>إذا كانت لديك أي استفسارات أو أسئلة تتعلق بسياسة الخصوصية، يسعدنا تواصلك معنا عبر البريد الإلكتروني المعتمد للدعم:</p>
+      <p><strong>البريد الإلكتروني الرسمي:</strong> <a href="mailto:detectivearkan@gmail.com">detectivearkan@gmail.com</a></p>
+    </div>
 
-    <div class="en-section">
-      <h2>[English] Privacy Policy</h2>
-      <p>At <strong>ARKAN Development Team</strong>, we are committed to protecting the privacy and personal data of our users. This Privacy Policy outlines what information may be collected or processed when you use "ARKAN: Criminal Investigation", and how this data is utilized and safeguarded in strict accordance with Google Play Developer Policies, GDPR, and COPPA.</p>
-      
-      <h3>1. Information We Do Not Collect</h3>
-      <p>ARKAN does not require or collect any personally identifiable information (PII) such as legal names, physical addresses, phone numbers, email addresses, exact GPS location, or contacts. The app requests zero camera, microphone, or external storage permissions.</p>
+    <!-- ENGLISH CONTENT -->
+    <div class="en-only">
+      <h2>Introduction & Privacy Commitment</h2>
+      <p>
+        At <strong>ARKAN Detective Team</strong>, we are deeply committed to protecting the privacy and personal data of our players. This Privacy Policy details the types of data that may be processed when you interact with "ARKAN: Criminal Investigation", how this information is handled, and the measures we employ to maintain strict compliance with Google Play Developer Policies, GDPR, and COPPA.
+      </p>
 
-      <h3>2. Local Data Storage</h3>
-      <p>All case progress across 250 mysteries, interrogation records, detective notebook clues, achievements, and virtual balances are encrypted and saved strictly on your local device via sandboxed Room Database and SharedPreferences. No private theories are uploaded to external servers.</p>
+      <div class="highlight-card">
+        <p>🔒 Security Summary: ARKAN functions without requiring any personal identifiable data. All case progress, notes, and evidence remain safely stored on your local device.</p>
+      </div>
 
-      <h3>3. Third-Party Services & Ads</h3>
-      <p>ARKAN integrates Google Mobile Ads (AdMob) for optional rewarded and interstitial ads. AdMob may collect automated device identifiers (Google Advertising ID) and telemetry to prevent fraud. Review Google's Privacy Policy at <a href="https://policies.google.com/privacy" target="_blank">policies.google.com/privacy</a>.</p>
+      <h3>1. Information We Do Not Collect (Zero PII)</h3>
+      <ul>
+        <li>The application <strong>does not require or collect</strong> any personally identifiable information (PII) such as legal names, phone numbers, physical addresses, email addresses, financial information, precise GPS location, or device contacts.</li>
+        <li>The application <strong>does not request access</strong> to camera, microphone, or external files outside sandboxed application storage (Scoped Storage).</li>
+        <li>All detective names, aliases, and notes are purely fictional and remain stored exclusively on the user's device.</li>
+      </ul>
+
+      <h3>2. Local Data Storage & Security</h3>
+      <ul>
+        <li>Your progress across all 430 criminal cases, forensic deduction logs, detective notebook clues, forensic evidence, achievements, and virtual in-game balances are stored <strong>strictly on your local device</strong> using secure Room Database and SharedPreferences.</li>
+        <li>We never transmit or sync your private deduction theories or notes to unauthorized external servers.</li>
+      </ul>
+
+      <h3>3. Third-Party Services & Advertising</h3>
+      <p>ARKAN integrates trusted third-party services that may collect pseudonymous and non-personal diagnostic telemetry to serve ads and prevent fraud:</p>
+      <ul>
+        <li><strong>Google Mobile Ads (AdMob):</strong> Used to deliver optional rewarded video ads, interstitial ads, and banner ads. AdMob may collect pseudonymous identifiers such as the Google Advertising ID (AAID), coarse IP address, and technical device specifications to prevent fraud and ensure policy compliance. Review Google's Privacy Policy at <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a>.</li>
+        <li><strong>Google User Messaging Platform (UMP):</strong> Ensures full compliance with GDPR regulations by requesting explicit consent for personalized advertising, which players can adjust or revoke at any time.</li>
+      </ul>
 
       <h3>4. Children's Privacy (COPPA Compliance)</h3>
-      <p>ARKAN is designed as a logic mystery and detective puzzle game for a general audience. We do not knowingly collect personal information from children under 13.</p>
+      <p>ARKAN is designed as a logic mystery and detective puzzle game for a general audience. We do not knowingly solicit or collect personal information from children under 13, and all advertisements comply with Google Play Families Policy guidelines.</p>
 
       <h3>5. User Rights & Data Deletion</h3>
-      <p>You can reset all case files and progress at any time through the "Reset Completed Case Files" control in the app settings. Uninstalling the app permanently purges all local records from your device.</p>
+      <ul>
+        <li><strong>Case Data Reset:</strong> Players can reset all solved case files, notes, and progression at any time via the "Reset Completed Case Files" action in the game settings, backed by a confirmation prompt to prevent accidental wipes.</li>
+        <li><strong>App Uninstallation:</strong> Deleting the app from your device immediately and permanently purges all local databases, preferences, and cached case records.</li>
+      </ul>
 
       <h3>6. Contact Us</h3>
-      <p>For any privacy inquiries or feedback, reach our team at: <strong>support@arkan-detective.com</strong></p>
+      <p>For any privacy inquiries, questions, or technical support, please reach out directly to our team:</p>
+      <p><strong>Official Support Email:</strong> <a href="mailto:detectivearkan@gmail.com">detectivearkan@gmail.com</a></p>
     </div>
   </div>
 
+  <!-- Footer -->
   <footer>
-    جميع الحقوق محفوظة © 2026 أركان للتحقيق الجنائي (ARKAN Team). معرّف التطبيق: com.arkan.detective
+    <div class="ar-only">
+      جميع الحقوق محفوظة © 2026 أركان للتحقيق الجنائي (ARKAN Detective Team). معرّف الحزمة: <code>com.arkan.detective</code><br>
+      الدعم الفني: <a href="mailto:detectivearkan@gmail.com">detectivearkan@gmail.com</a>
+    </div>
+    <div class="en-only">
+      All rights reserved © 2026 ARKAN Criminal Investigation Team. Package ID: <code>com.arkan.detective</code><br>
+      Official Support: <a href="mailto:detectivearkan@gmail.com">detectivearkan@gmail.com</a>
+    </div>
   </footer>
+
+  <!-- Language Switcher Script -->
+  <script>
+    function updateLanguageUI(lang) {
+      document.documentElement.lang = lang;
+      document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+      
+      const btnText = document.getElementById('langBtnText');
+      if (btnText) {
+        btnText.textContent = (lang === 'ar') ? 'English' : 'العربية';
+      }
+
+      if (lang === 'ar') {
+        document.title = 'سياسة الخصوصية | Privacy Policy - أركان ARKAN';
+      } else {
+        document.title = 'Privacy Policy | Official ARKAN Detective';
+      }
+    }
+
+    function toggleLanguage() {
+      const currentLang = document.documentElement.lang || 'ar';
+      const newLang = (currentLang === 'ar') ? 'en' : 'ar';
+      localStorage.setItem('arkan_lang', newLang);
+      updateLanguageUI(newLang);
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      const activeLang = document.documentElement.lang || 'ar';
+      updateLanguageUI(activeLang);
+    });
+  </script>
 </body>
 </html>
