@@ -4,23 +4,37 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>أركان للتحقيق الجنائي | ARKAN: Criminal Investigation - الموقع الرسمي</title>
-  <meta name="description" content="أضخم لعبة تحقيق جنائي وألغاز بوليسية باللغتين العربية والإنجليزية. 250 قضية غامضة، مسارح جريمة تفاعلية، غرف استجواب، وقاعة محكمة حقيقية.">
+  <meta name="description" content="أضخم لعبة تحقيق جنائي وألغاز بوليسية باللغتين العربية والإنجليزية. 430 قضية استقصائية واقعية، مسارح جريمة تفاعلية، غرف استجواب، ومحاكمات جنائية حقيقية.">
+  <link rel="icon" type="image/png" href="app_icon.png">
+  <link rel="apple-touch-icon" href="app_icon.png">
+  
+  <!-- Open Graph & Social Meta -->
+  <meta property="og:title" content="أركان للتحقيق الجنائي | ARKAN: Criminal Investigation">
+  <meta property="og:description" content="430 قضية جنائية واقعية، مسارح جريمة، استجوابات، وقاعة محكمة حقيقية.">
+  <meta property="og:image" content="app_icon.png">
+  <meta property="og:type" content="website">
+
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Cinzel:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Cinzel:wght@600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
   <style>
     :root {
-      --bg: #0A0B0E;
-      --card-bg: #12141A;
-      --card-border: #262936;
+      --bg: #07080B;
+      --card-bg: #101218;
+      --card-hover: #151821;
+      --border: #222634;
       --gold: #D4AF37;
-      --gold-light: #F3E5AB;
-      --gold-glow: rgba(212, 175, 55, 0.25);
-      --text: #F0F2F5;
-      --text-muted: #9AA0B2;
-      --red: #E53935;
-      --green: #43A047;
-      --blue: #1E88E5;
+      --gold-light: #F7E7A9;
+      --gold-dark: #8F721B;
+      --gold-glow: rgba(212, 175, 55, 0.28);
+      --gold-border: rgba(212, 175, 55, 0.45);
+      --text: #F2F4F8;
+      --text-muted: #959BAE;
+      --accent-blue: #38BDF8;
+      --accent-green: #34D399;
+      --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     * {
@@ -30,35 +44,59 @@
     }
 
     body {
-      font-family: 'Cairo', system-ui, -apple-system, sans-serif;
       background-color: var(--bg);
       color: var(--text);
       line-height: 1.7;
       overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
     }
 
-    /* Ambient Background Effect */
-    .ambient-glow {
+    /* Bilingual Font Adaptations */
+    html[lang="ar"] body {
+      font-family: 'Cairo', system-ui, -apple-system, sans-serif;
+    }
+    html[lang="en"] body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    }
+
+    /* Directional visibility toggles */
+    html[lang="ar"] .en-only { display: none !important; }
+    html[lang="en"] .ar-only { display: none !important; }
+
+    /* Ambient lighting */
+    .ambient-glow-top {
       position: fixed;
-      top: -20%;
+      top: -150px;
       left: 50%;
       transform: translateX(-50%);
-      width: 800px;
-      height: 800px;
-      background: radial-gradient(circle, var(--gold-glow) 0%, transparent 70%);
+      width: 900px;
+      height: 600px;
+      background: radial-gradient(ellipse at center, rgba(212, 175, 55, 0.18) 0%, transparent 70%);
       z-index: -1;
       pointer-events: none;
     }
 
-    /* Header & Navigation */
+    .ambient-glow-bottom {
+      position: fixed;
+      bottom: -150px;
+      right: 10%;
+      width: 600px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.08) 0%, transparent 70%);
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    /* Navigation */
     header {
       position: sticky;
       top: 0;
-      backdrop-filter: blur(16px);
-      background: rgba(10, 11, 14, 0.85);
-      border-bottom: 1px solid var(--card-border);
-      z-index: 100;
-      padding: 16px 24px;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      background: rgba(7, 8, 11, 0.88);
+      border-bottom: 1px solid var(--border);
+      z-index: 1000;
+      padding: 14px 24px;
     }
 
     .nav-container {
@@ -67,87 +105,140 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 16px;
     }
 
     .logo {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 14px;
       text-decoration: none;
     }
 
-    .logo-badge {
-      width: 44px;
-      height: 44px;
-      background: linear-gradient(135deg, #2A2415, #12141A);
-      border: 1.5px solid var(--gold);
+    .logo-img-wrapper {
+      position: relative;
+      width: 48px;
+      height: 48px;
       border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 20px;
-      box-shadow: 0 0 15px var(--gold-glow);
+      padding: 2px;
+      background: linear-gradient(135deg, var(--gold), #262936);
+      box-shadow: 0 0 16px var(--gold-glow);
     }
 
-    .logo-text {
+    .logo-img {
+      width: 100%;
+      height: 100%;
+      border-radius: 10px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .logo-text-box {
       display: flex;
       flex-direction: column;
     }
 
-    .logo-title {
+    .logo-brand {
       font-size: 20px;
       font-weight: 900;
       color: var(--gold);
       letter-spacing: 0.5px;
+      line-height: 1.2;
     }
 
     .logo-sub {
       font-size: 11px;
       color: var(--text-muted);
-      font-family: 'Cinzel', serif;
       letter-spacing: 1px;
+      font-family: 'Cinzel', serif;
+      text-transform: uppercase;
+    }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 20px;
     }
 
     .nav-links {
       display: flex;
       gap: 24px;
       align-items: center;
+      list-style: none;
     }
 
     .nav-links a {
-      color: var(--text);
+      color: var(--text-muted);
       text-decoration: none;
       font-size: 14px;
       font-weight: 600;
-      transition: color 0.2s;
+      transition: var(--transition);
     }
 
     .nav-links a:hover {
       color: var(--gold);
     }
 
-    .btn-header {
-      background: linear-gradient(135deg, var(--gold), #B38F24);
-      color: #0A0B0E;
-      font-weight: 800;
-      padding: 8px 18px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-size: 13px;
-      transition: transform 0.2s, box-shadow 0.2s;
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
     }
 
-    .btn-header:hover {
-      transform: translateY(-2px);
+    .lang-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
+      color: var(--gold-light);
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: var(--transition);
+    }
+
+    .lang-btn:hover {
+      background: rgba(212, 175, 55, 0.15);
+      border-color: var(--gold);
+      transform: translateY(-1px);
+    }
+
+    .btn-header-cta {
+      background: linear-gradient(135deg, var(--gold), #A98424);
+      color: #07080B;
+      font-weight: 800;
+      padding: 8px 18px;
+      border-radius: 10px;
+      font-size: 13px;
+      text-decoration: none;
       box-shadow: 0 4px 15px var(--gold-glow);
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+
+    .btn-header-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(212, 175, 55, 0.45);
     }
 
     /* Hero Section */
     .hero {
-      padding: 90px 20px 60px;
-      text-align: center;
-      max-width: 900px;
+      padding: 70px 20px 40px;
+      max-width: 1160px;
       margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      align-items: center;
+      gap: 48px;
+    }
+
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
     }
 
     .badge-pill {
@@ -156,51 +247,55 @@
       gap: 8px;
       padding: 6px 16px;
       background: rgba(212, 175, 55, 0.12);
-      border: 1px solid rgba(212, 175, 55, 0.4);
+      border: 1px solid var(--gold-border);
       border-radius: 30px;
       color: var(--gold-light);
       font-size: 13px;
       font-weight: 700;
-      margin-bottom: 24px;
+      width: fit-content;
     }
 
-    .hero h1 {
-      font-size: 44px;
+    .hero-title {
+      font-size: 42px;
       font-weight: 900;
-      line-height: 1.3;
-      margin-bottom: 20px;
-      background: linear-gradient(135deg, #FFFFFF 30%, var(--gold) 100%);
+      line-height: 1.25;
+      background: linear-gradient(135deg, #FFFFFF 40%, var(--gold) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
-    .hero p {
-      font-size: 18px;
+    html[lang="en"] .hero-title {
+      font-family: 'Cinzel', serif;
+      font-size: 38px;
+      letter-spacing: -0.5px;
+    }
+
+    .hero-desc {
+      font-size: 17px;
       color: var(--text-muted);
-      margin-bottom: 36px;
       line-height: 1.8;
     }
 
-    .hero-actions {
+    .hero-buttons {
       display: flex;
-      justify-content: center;
       gap: 16px;
       flex-wrap: wrap;
+      margin-top: 10px;
     }
 
     .btn-primary {
-      background: linear-gradient(135deg, var(--gold), #997515);
-      color: #0A0B0E;
+      background: linear-gradient(135deg, var(--gold), #B58C1B);
+      color: #07080B;
       font-weight: 800;
       font-size: 15px;
-      padding: 14px 32px;
+      padding: 14px 28px;
       border-radius: 12px;
       text-decoration: none;
       display: inline-flex;
       align-items: center;
       gap: 10px;
       box-shadow: 0 6px 25px var(--gold-glow);
-      transition: transform 0.2s, box-shadow 0.2s;
+      transition: var(--transition);
     }
 
     .btn-primary:hover {
@@ -213,42 +308,101 @@
       color: var(--text);
       font-weight: 700;
       font-size: 15px;
-      padding: 14px 28px;
+      padding: 14px 24px;
       border-radius: 12px;
       text-decoration: none;
-      border: 1px solid var(--card-border);
+      border: 1px solid var(--border);
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      transition: background 0.2s, border-color 0.2s;
+      transition: var(--transition);
     }
 
     .btn-secondary:hover {
-      background: rgba(255, 255, 255, 0.05);
+      background: var(--card-hover);
       border-color: var(--gold);
+      transform: translateY(-2px);
     }
 
-    /* Key Metrics Strip */
+    /* Hero Visual Showcase */
+    .hero-visual {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .icon-showcase-card {
+      position: relative;
+      width: 320px;
+      height: 320px;
+      border-radius: 36px;
+      padding: 12px;
+      background: linear-gradient(145deg, rgba(212, 175, 55, 0.35), rgba(16, 18, 24, 0.95));
+      border: 2px solid var(--gold);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 40px var(--gold-glow);
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .icon-showcase-img {
+      width: 100%;
+      height: 100%;
+      border-radius: 26px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .badge-floating {
+      position: absolute;
+      bottom: -15px;
+      right: -10px;
+      background: rgba(16, 18, 24, 0.95);
+      border: 1px solid var(--gold);
+      border-radius: 20px;
+      padding: 8px 16px;
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--gold-light);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.6);
+      backdrop-filter: blur(10px);
+    }
+
+    /* Metrics Strip */
     .metrics-bar {
-      max-width: 1100px;
-      margin: 40px auto 70px;
+      max-width: 1160px;
+      margin: 50px auto;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 18px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
       padding: 0 20px;
     }
 
     .metric-card {
       background: var(--card-bg);
-      border: 1px solid var(--card-border);
+      border: 1px solid var(--border);
       border-radius: 16px;
       padding: 24px 20px;
       text-align: center;
       position: relative;
       overflow: hidden;
+      transition: var(--transition);
     }
 
-    .metric-card::before {
+    .metric-card:hover {
+      border-color: var(--gold-border);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+    }
+
+    .metric-card::after {
       content: '';
       position: absolute;
       top: 0;
@@ -262,352 +416,642 @@
       font-size: 36px;
       font-weight: 900;
       color: var(--gold);
-      margin-bottom: 4px;
+      font-family: 'Cinzel', serif;
+      line-height: 1.1;
+      margin-bottom: 6px;
     }
 
     .metric-label {
-      font-size: 13px;
+      font-size: 13.5px;
       color: var(--text-muted);
       font-weight: 600;
     }
 
-    /* Pillars of Investigation */
-    .section-title {
-      text-align: center;
-      margin-bottom: 50px;
-      padding: 0 20px;
-    }
-
-    .section-title h2 {
-      font-size: 32px;
-      font-weight: 800;
-      color: var(--text);
-      margin-bottom: 12px;
-    }
-
-    .section-title p {
-      font-size: 15px;
-      color: var(--text-muted);
-      max-width: 600px;
+    /* Section Styling */
+    section {
+      padding: 70px 20px;
+      max-width: 1160px;
       margin: 0 auto;
     }
 
+    .section-head {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .section-tag {
+      color: var(--gold);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .section-title {
+      font-size: 34px;
+      font-weight: 900;
+      color: #FFF;
+      margin-bottom: 14px;
+    }
+
+    .section-subtitle {
+      font-size: 16px;
+      color: var(--text-muted);
+      max-width: 650px;
+      margin: 0 auto;
+    }
+
+    /* Features Grid */
     .features-grid {
-      max-width: 1200px;
-      margin: 0 auto 90px;
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 24px;
-      padding: 0 20px;
     }
 
-    .feature-box {
+    .feature-card {
       background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 18px;
-      padding: 32px 26px;
-      transition: transform 0.25s, border-color 0.25s;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 32px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transition: var(--transition);
       position: relative;
     }
 
-    .feature-box:hover {
-      transform: translateY(-5px);
-      border-color: rgba(212, 175, 55, 0.4);
+    .feature-card:hover {
+      background: var(--card-hover);
+      border-color: var(--gold-border);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.5);
     }
 
-    .feature-icon {
+    .feature-icon-box {
       width: 56px;
       height: 56px;
       border-radius: 14px;
-      background: rgba(212, 175, 55, 0.1);
-      border: 1px solid rgba(212, 175, 55, 0.3);
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(255, 255, 255, 0.02));
+      border: 1px solid var(--gold-border);
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 26px;
-      margin-bottom: 20px;
     }
 
-    .feature-box h3 {
+    .feature-card h3 {
       font-size: 20px;
       font-weight: 800;
       color: var(--gold-light);
-      margin-bottom: 10px;
     }
 
-    .feature-box p {
-      font-size: 14px;
+    .feature-card p {
+      font-size: 14.5px;
       color: var(--text-muted);
-      line-height: 1.7;
+      line-height: 1.8;
     }
 
-    /* Showcase Box */
-    .showcase {
-      max-width: 1100px;
-      margin: 0 auto 90px;
-      padding: 40px;
-      background: linear-gradient(145deg, #161822, #0D0E14);
-      border: 1px solid rgba(212, 175, 55, 0.35);
+    /* Privacy Banner Showcase */
+    .privacy-showcase {
+      background: linear-gradient(135deg, #11141C, #0C0D12);
+      border: 1px solid var(--border);
       border-radius: 24px;
+      padding: 44px;
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
+      grid-template-columns: 1.3fr 0.7fr;
       align-items: center;
+      gap: 40px;
+      margin: 40px auto;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+      position: relative;
+      overflow: hidden;
     }
 
-    .showcase-content h3 {
-      font-size: 28px;
-      font-weight: 800;
+    .privacy-showcase::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 250px;
+      height: 250px;
+      background: radial-gradient(circle, var(--gold-glow) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .privacy-text h3 {
+      font-size: 26px;
+      font-weight: 900;
       color: var(--gold);
-      margin-bottom: 16px;
+      margin-bottom: 12px;
     }
 
-    .showcase-content p {
+    .privacy-text p {
       font-size: 15px;
       color: var(--text-muted);
       margin-bottom: 24px;
       line-height: 1.8;
     }
 
-    .showcase-list {
+    .privacy-checklist {
       list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
     }
 
-    .showcase-list li {
+    .privacy-checklist li {
       display: flex;
       align-items: center;
-      gap: 10px;
-      font-size: 14px;
-      font-weight: 600;
-      margin-bottom: 12px;
+      gap: 12px;
+      font-size: 14.5px;
       color: var(--text);
     }
 
-    .showcase-list li span {
-      color: var(--gold);
+    .privacy-checklist li span {
+      color: var(--accent-green);
+      font-weight: 900;
     }
 
-    .showcase-preview {
-      background: #000;
-      border: 1px solid var(--card-border);
-      border-radius: 16px;
-      padding: 24px;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+    .privacy-badge-box {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--gold-border);
+      border-radius: 20px;
+      padding: 32px 24px;
       text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
     }
 
-    .badge-icon-lg {
-      font-size: 54px;
-      margin-bottom: 14px;
+    .privacy-badge-box .shield-icon {
+      font-size: 48px;
     }
 
     /* Footer */
     footer {
-      background: #07080A;
-      border-top: 1px solid var(--card-border);
-      padding: 40px 20px;
-      text-align: center;
+      border-top: 1px solid var(--border);
+      background: #050608;
+      padding: 60px 24px 30px;
+      margin-top: 60px;
     }
 
-    .footer-content {
-      max-width: 800px;
+    .footer-container {
+      max-width: 1160px;
       margin: 0 auto;
       display: flex;
       flex-direction: column;
+      gap: 40px;
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
       align-items: center;
-      gap: 20px;
+      flex-wrap: wrap;
+      gap: 24px;
     }
 
     .footer-links {
       display: flex;
-      gap: 24px;
+      gap: 28px;
+      align-items: center;
       flex-wrap: wrap;
-      justify-content: center;
     }
 
     .footer-links a {
       color: var(--text-muted);
       text-decoration: none;
       font-size: 14px;
-      transition: color 0.2s;
+      font-weight: 600;
+      transition: var(--transition);
     }
 
     .footer-links a:hover {
       color: var(--gold);
     }
 
-    .copyright {
-      font-size: 12px;
-      color: #636878;
+    .footer-divider {
+      height: 1px;
+      background: var(--border);
     }
 
-    @media (max-width: 768px) {
-      .hero h1 { font-size: 32px; }
-      .showcase { grid-template-columns: 1fr; padding: 24px; }
-      .nav-links { display: none; }
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      color: #6B7280;
+      font-size: 13px;
+    }
+
+    .support-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(212, 175, 55, 0.08);
+      border: 1px solid rgba(212, 175, 55, 0.25);
+      padding: 6px 14px;
+      border-radius: 8px;
+      color: var(--gold-light);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+
+    .support-badge:hover {
+      background: rgba(212, 175, 55, 0.2);
+      border-color: var(--gold);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding-top: 40px;
+      }
+      .hero-content {
+        align-items: center;
+      }
+      .hero-buttons {
+        justify-content: center;
+      }
+      .metrics-bar {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .privacy-showcase {
+        grid-template-columns: 1fr;
+        padding: 30px 24px;
+      }
+      .nav-links {
+        display: none;
+      }
+    }
+
+    @media (max-width: 540px) {
+      .metrics-bar {
+        grid-template-columns: 1fr;
+      }
+      .hero-title {
+        font-size: 32px;
+      }
+      .icon-showcase-card {
+        width: 250px;
+        height: 250px;
+      }
+      .footer-top, .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+      }
     }
   </style>
+
+  <!-- Auto-language detection script (Runs immediately to prevent flicker) -->
+  <script>
+    (function() {
+      const savedLang = localStorage.getItem('arkan_lang');
+      let lang = 'ar';
+      if (savedLang) {
+        lang = savedLang;
+      } else {
+        const navLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
+        if (navLang.startsWith('en')) {
+          lang = 'en';
+        } else {
+          lang = 'ar';
+        }
+      }
+      document.documentElement.lang = lang;
+      document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+    })();
+  </script>
 </head>
 <body>
-  <div class="ambient-glow"></div>
+  <div class="ambient-glow-top"></div>
+  <div class="ambient-glow-bottom"></div>
 
-  <!-- Header Navigation -->
+  <!-- Header -->
   <header>
     <div class="nav-container">
-      <a href="#" class="logo">
-        <div class="logo-badge">🔍</div>
-        <div class="logo-text">
-          <span class="logo-title">أركان</span>
-          <span class="logo-sub">ARKAN DETECTIVE</span>
+      <a href="index.html" class="logo">
+        <div class="logo-img-wrapper">
+          <img src="app_icon.png" alt="ARKAN Icon" class="logo-img">
+        </div>
+        <div class="logo-text-box">
+          <span class="logo-brand ar-only">أركان</span>
+          <span class="logo-brand en-only">ARKAN</span>
+          <span class="logo-sub">CRIMINAL INVESTIGATION</span>
         </div>
       </a>
 
-      <div class="nav-links">
-        <a href="#features">الأركان الجنائية</a>
-        <a href="#about">عن اللعبة</a>
-        <a href="privacy.html">سياسة الخصوصية</a>
-      </div>
+      <nav class="nav-menu">
+        <ul class="nav-links">
+          <li><a href="#features"><span class="ar-only">المميزات</span><span class="en-only">Features</span></a></li>
+          <li><a href="#gameplay"><span class="ar-only">أسلوب اللعب</span><span class="en-only">Gameplay</span></a></li>
+          <li><a href="privacy.html"><span class="ar-only">سياسة الخصوصية</span><span class="en-only">Privacy Policy</span></a></li>
+          <li><a href="#contact"><span class="ar-only">تواصل معنا</span><span class="en-only">Contact</span></a></li>
+        </ul>
 
-      <a href="privacy.html" class="btn-header">سياسة الخصوصية 📜</a>
+        <div class="nav-actions">
+          <button class="lang-btn" id="langToggleBtn" onclick="toggleLanguage()" aria-label="Toggle Language">
+            🌐 <span id="langBtnText">English</span>
+          </button>
+          <a href="https://play.google.com/store/apps/details?id=com.arkan.detective" class="btn-header-cta" target="_blank">
+            <span class="ar-only">تحميل اللعبة</span>
+            <span class="en-only">Get Game</span>
+          </a>
+        </div>
+      </nav>
     </div>
   </header>
 
   <!-- Hero Section -->
-  <section class="hero">
-    <div class="badge-pill">
-      <span>⚖️</span>
-      <span>أضخم لعبة تحقيق جنائي عربية وعالمية</span>
-    </div>
+  <main>
+    <section class="hero">
+      <div class="hero-content">
+        <div class="badge-pill">
+          <span>🕵️‍♂️</span>
+          <span class="ar-only">الإصدار الرسمي 2026 • 430 قضية استقصائية</span>
+          <span class="en-only">Official 2026 Edition • 430 Forensic Cases</span>
+        </div>
 
-    <h1>فك طلاسم الجرائم الغامضة وأثبت أركان الحقيقة الثلاثة</h1>
+        <h1 class="hero-title ar-only">فك شفرات الجريمة، واجه المشتبه بهم، واكشف الحقيقة</h1>
+        <h1 class="hero-title en-only">Solve Cold Cases, Interrogate Suspects & Deliver Justice</h1>
 
-    <p>
-      انغمس في عالم التحريات البوليسية الواقعية؛ عاين مسارح الجرائم، قارن تضاربات أقوال المشتبه بهم في غرف الاستجواب، وابنِ نظريتك في قصر العقل، ثم قُد الادعاء الجنائي أمام هيئة المحكمة لانتزاع حكم الإدانة البات.
-    </p>
+        <p class="hero-desc ar-only">
+          انغمس في أضخم محاكاة بوليسية واقعية باللغتين العربية والإنجليزية. افحص مسارح الجريمة التفاعلية، حلل البصمات والحمض النووي، واجه المشتبه بهم في غرف التحقيق، وصغ عريضة الاتهام لانتزاع حكم الإدانة العادل في قاعة المحكمة.
+        </p>
+        <p class="hero-desc en-only">
+          Immerse yourself in the ultimate authentic detective simulator available in both Arabic and English. Inspect interactive crime scenes, cross-examine suspects, match ballistics and DNA evidence, and argue your indictment to secure a conviction in court.
+        </p>
 
-    <div class="hero-actions">
-      <a href="#features" class="btn-primary">
-        <span>استكشف أنظمة التحقيق</span>
-        <span>🔍</span>
-      </a>
-      <a href="privacy.html" class="btn-secondary">
-        <span>وثيقة الخصوصية والأمان</span>
-        <span>🛡️</span>
-      </a>
-    </div>
-  </section>
-
-  <!-- Key Metrics Strip -->
-  <section class="metrics-bar">
-    <div class="metric-card">
-      <div class="metric-num">250+</div>
-      <div class="metric-label">قضية استقصائية متكاملة</div>
-    </div>
-    <div class="metric-card">
-      <div class="metric-num">100%</div>
-      <div class="metric-label">ثنائية لغوية (عربي / English)</div>
-    </div>
-    <div class="metric-card">
-      <div class="metric-num">3</div>
-      <div class="metric-label">أركان الحقيقة: الجاني، الدافع، والأسلوب</div>
-    </div>
-    <div class="metric-card">
-      <div class="metric-num">0</div>
-      <div class="metric-label">جمع للبيانات الشخصية (أمان تام)</div>
-    </div>
-  </section>
-
-  <!-- Features / Pillars Section -->
-  <section id="features">
-    <div class="section-title">
-      <h2>أركان التجربة الجنائية</h2>
-      <p>محاكاة دقيقة وشاملة لعمل المحققين الفيدراليين وخبراء الأدلة الجنائية</p>
-    </div>
-
-    <div class="features-grid">
-      <div class="feature-box">
-        <div class="feature-icon">🔬</div>
-        <h3>مسرح الجريمة والأدلة</h3>
-        <p>رفع البصمات المجهرية، فحص كبسولات السموم، مطابقة تسلسلات الحمض النووي (PCR)، وتحليل تسجيلات كاميرات المراقبة الرقمية CCTV بدقة متناهية.</p>
-      </div>
-
-      <div class="feature-box">
-        <div class="feature-icon">🎙️</div>
-        <h3>غرف الاستجواب التفاعلية</h3>
-        <p>استجوب الشهود والمشتبه بهم، واجههم بتضارب أقوالهم وسجلات اتصالاتهم، واكسر حواجز الإنكار النفسي لانتزاع الاعترافات المسجلة رسمياً.</p>
-      </div>
-
-      <div class="feature-box">
-        <div class="feature-icon">🧠</div>
-        <h3>قصر العقل وسبورة الخيوط</h3>
-        <p>ربط خيوط الشبهات بين المشتبه بهم والدوافع والأدوات في فضاء ثلاثي الأبعاد مستلهم من طريقة تفكير أشهر المحققين في التاريخ.</p>
-      </div>
-
-      <div class="feature-box">
-        <div class="feature-icon">📓</div>
-        <h3>دفتر الاستقصاء الذكي</h3>
-        <p>توثيق حي وديناميكي يفرز الأدلة، يرتب الأحداث على الخط الزمني التنازلي، ويكشف التناقضات تلقائياً مع تقدم التحقيق.</p>
-      </div>
-
-      <div class="feature-box">
-        <div class="feature-icon">🏛️</div>
-        <h3>قاعة المحكمة وصك الاتهام</h3>
-        <p>صغ صك الاتهام المبدئي، واجه محامي الدفاع في معركة قضائية كلامية تعتمد على قوة حججك، وأقنع القاضي لإصدار الحكم العادل.</p>
-      </div>
-
-      <div class="feature-box">
-        <div class="feature-icon">📜</div>
-        <h3>روايات بوليسية أدبية</h3>
-        <p>بعد إغلاق كل قضية، يُفتح لك فصل روائي أدبي سردي مشوق يروي تفاصيل الجريمة ودوافعها الخفية من منظور الجاني والضحية.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Showcase / Security Banner -->
-  <section class="showcase" id="about">
-    <div class="showcase-content">
-      <h3>الخصوصية والأمان أولويتنا القصوى</h3>
-      <p>
-        صُممت لعبة أركان لتكون آمنة تماماً للمستخدمين من كافة الفئات العمرية. نحترم خصوصيتك ونلتزم الصرامة في حماية بياناتك وفقاً لأعلى المعايير العالمية.
-      </p>
-      <ul class="showcase-list">
-        <li><span>✅</span> تخزين محلي بالكامل لملفات التحقيق والتقدم على هاتفك.</li>
-        <li><span>✅</span> لا يتم طلب أو جمع أي بيانات حساسة أو أسماء حقيقية أو مواقع.</li>
-        <li><span>✅</span> متوافقة مع سياسات عائلات متجر Google Play ولوائح GDPR و COPPA.</li>
-        <li><span>✅</span> خيار تصفير السجلات والبيانات بضغطة زر واحدة في أي وقت.</li>
-      </ul>
-    </div>
-    <div class="showcase-preview">
-      <div class="badge-icon-lg">🛡️</div>
-      <h4 style="color: var(--gold); margin-bottom: 8px;">وثيقة الخصوصية المعتمدة</h4>
-      <p style="color: var(--text-muted); font-size: 13px; margin-bottom: 20px;">
-        اطلع على النص الكامل لسياسة الخصوصية المعتمدة لتطبيق أركان على Google Play.
-      </p>
-      <a href="privacy.html" class="btn-primary" style="padding: 10px 24px; font-size: 13px;">قراءة سياسة الخصوصية 📜</a>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <div class="footer-content">
-      <div class="logo">
-        <div class="logo-badge">🔍</div>
-        <div class="logo-text">
-          <span class="logo-title">أركان</span>
-          <span class="logo-sub">ARKAN: CRIMINAL INVESTIGATION</span>
+        <div class="hero-buttons">
+          <a href="https://play.google.com/store/apps/details?id=com.arkan.detective" class="btn-primary" target="_blank">
+            <span>📲</span>
+            <span class="ar-only">تنزيل من متجر Google Play</span>
+            <span class="en-only">Download on Google Play</span>
+          </a>
+          <a href="privacy.html" class="btn-secondary">
+            <span>🛡️</span>
+            <span class="ar-only">سياسة الخصوصية المعتمدة</span>
+            <span class="en-only">Official Privacy Policy</span>
+          </a>
         </div>
       </div>
 
-      <div class="footer-links">
-        <a href="#features">الرئيسية</a>
-        <a href="privacy.html">سياسة الخصوصية (Privacy Policy)</a>
-        <a href="mailto:support@arkan-detective.com">الدعم الفني: support@arkan-detective.com</a>
+      <div class="hero-visual">
+        <div class="icon-showcase-card">
+          <img src="app_icon.png" alt="ARKAN Detective Icon" class="icon-showcase-img">
+          <div class="badge-floating">
+            <span>⭐</span>
+            <span class="ar-only">معتمد على Google Play</span>
+            <span class="en-only">Google Play Verified</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Metrics Bar -->
+    <div class="metrics-bar">
+      <div class="metric-card">
+        <div class="metric-num">430+</div>
+        <div class="metric-label ar-only">قضية جنائية متكاملة</div>
+        <div class="metric-label en-only">Forensic Solvable Cases</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-num">100%</div>
+        <div class="metric-label ar-only">ثنائية لغوية (عربي / English)</div>
+        <div class="metric-label en-only">Bilingual (Arabic & English)</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-num">3</div>
+        <div class="metric-label ar-only">أركان الحقيقة: الجاني، الدافع، الأسلوب</div>
+        <div class="metric-label en-only">Pillars: Culprit, Motive, Method</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-num">0</div>
+        <div class="metric-label ar-only">جمع للبيانات (خصوصية تامة)</div>
+        <div class="metric-label en-only">Zero Personal Data Collected</div>
+      </div>
+    </div>
+
+    <!-- Pillars / Features Section -->
+    <section id="features">
+      <div class="section-head">
+        <span class="section-tag ar-only">محاكاة استقصائية حقيقية</span>
+        <span class="section-tag en-only">Real Forensic Simulation</span>
+        <h2 class="section-title ar-only">أركان التحقيق الستة</h2>
+        <h2 class="section-title en-only">The 6 Pillars of Investigation</h2>
+        <p class="section-subtitle ar-only">كل قضية في أركان صُممت بعناية وفق أسس التحقيق الجنائي والأدلة المادية، لتضعك في قلب الحدث كمحقق فيدرالي لا يقبل بالشك.</p>
+        <p class="section-subtitle en-only">Every case in ARKAN is crafted with precision based on real criminalistics, challenging you to think like an authentic veteran detective.</p>
       </div>
 
-      <p class="copyright">
-        جميع الحقوق محفوظة © 2026 أركان للتحقيق الجنائي (ARKAN Team). معرّف التطبيق: com.arkan.detective
-      </p>
+      <div class="features-grid">
+        <!-- 1. Crime Scene -->
+        <div class="feature-card">
+          <div class="feature-icon-box">🔬</div>
+          <h3 class="ar-only">مسرح الجريمة ومختبر الأدلة</h3>
+          <h3 class="en-only">Crime Scene & Forensics</h3>
+          <p class="ar-only">رفع البصمات المجهرية، فحص كبسولات السموم، مطابقة تسلسلات الحمض النووي (PCR)، ومراجعة تسجيلات كاميرات المراقبة الرقمية بدقة فائقة.</p>
+          <p class="en-only">Lift latent fingerprints, analyze toxic chemical vials, sequence forensic DNA (PCR), and review high-resolution digital CCTV camera feeds.</p>
+        </div>
+
+        <!-- 2. Interrogations -->
+        <div class="feature-card">
+          <div class="feature-icon-box">🎙️</div>
+          <h3 class="ar-only">غرف الاستجواب التفاعلية</h3>
+          <h3 class="en-only">Interactive Interrogations</h3>
+          <p class="ar-only">استجوب الشهود والمشتبه بهم، واجههم بتضارب أقوالهم وسجلات اتصالاتهم الهاتفية، واكسر حواجز الإنكار لانتزاع الاعترافات المسجلة.</p>
+          <p class="en-only">Cross-examine suspects and witnesses, corner them with contradictory testimonies and call records, and dismantle their psychological alibis.</p>
+        </div>
+
+        <!-- 3. Mind Palace -->
+        <div class="feature-card">
+          <div class="feature-icon-box">🧠</div>
+          <h3 class="ar-only">قصر العقل وسبورة الخيوط</h3>
+          <h3 class="en-only">Mind Palace & Clue Board</h3>
+          <p class="ar-only">اربط خيوط الشبهات بين المشتبه بهم والدوافع وأدوات الجريمة على لوحة التحريات التفاعلية المستوحاة من تفكير كبار المحققين.</p>
+          <p class="en-only">Connect suspects, motives, weapons, and timeline threads on an intuitive 3D mystery board inspired by legendary detective reasoning.</p>
+        </div>
+
+        <!-- 4. Smart Notebook -->
+        <div class="feature-card">
+          <div class="feature-icon-box">📓</div>
+          <h3 class="ar-only">دفتر الاستقصاء الذكي</h3>
+          <h3 class="en-only">Smart Detective Notebook</h3>
+          <p class="ar-only">توثيق حي وديناميكي يفرز الأدلة المكتشفة، يرتب الأحداث على الخط الزمني التنازلي، ويكشف الثغرات المنطقية تلقائياً مع تقدمك.</p>
+          <p class="en-only">Dynamic case logging that automatically catalogs discovered evidence, organizes chronological timelines, and highlights logic discrepancies.</p>
+        </div>
+
+        <!-- 5. Courtroom Trial -->
+        <div class="feature-card">
+          <div class="feature-icon-box">🏛️</div>
+          <h3 class="ar-only">قاعة المحكمة وصك الاتهام</h3>
+          <h3 class="en-only">Courtroom Trial & Indictment</h3>
+          <p class="ar-only">صغ صك الاتهام القاطع، واجه محامي الدفاع في معركة قضائية كلامية حاسمة تعتمد على قوة حججك، وأقنع القاضي بإصدار الحكم العادل.</p>
+          <p class="en-only">Draft your indictment bill, duel opposing defense attorneys with indisputable physical evidence, and convince the judge beyond reasonable doubt.</p>
+        </div>
+
+        <!-- 6. Noir Novellas -->
+        <div class="feature-card">
+          <div class="feature-icon-box">📜</div>
+          <h3 class="ar-only">روايات بوليسية سردية</h3>
+          <h3 class="en-only">Noir Detective Novellas</h3>
+          <p class="ar-only">بعد حل كل قضية، يُفتح لك فصل روائي أدبي مشوق يسرد تفاصيل الجريمة ودوافعها الخفية من منظور الجاني والضحية.</p>
+          <p class="en-only">Unlocking each closed case rewards you with a compelling literary noir chapter narrating the hidden backstory from the culprit's perspective.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Privacy & Security Commitment Banner -->
+    <section id="privacy-section">
+      <div class="privacy-showcase">
+        <div class="privacy-text">
+          <h3 class="ar-only">الخصوصية والأمان أولويتنا القصوى</h3>
+          <h3 class="en-only">Privacy & Security Are Our Top Priorities</h3>
+          <p class="ar-only">
+            صُممت لعبة أركان لتكون آمنة تماماً للمستخدمين من كافة الفئات العمرية. نحترم خصوصيتك ونلتزم الصرامة في حماية بياناتك وفقاً لأعلى المعايير العالمية المعترف بها لمتجر Google Play.
+          </p>
+          <p class="en-only">
+            ARKAN is engineered to be completely safe, private, and offline-friendly for users of all ages. We strictly uphold Google Play Developer Policies, GDPR, and COPPA standards.
+          </p>
+
+          <ul class="privacy-checklist">
+            <li>
+              <span>✔</span>
+              <span class="ar-only">تخزين محلي 100% لكافة القضايا والتقدم على جهازك دون خوادم تجسس.</span>
+              <span class="en-only">100% local encrypted storage on your device with zero remote server logging.</span>
+            </li>
+            <li>
+              <span>✔</span>
+              <span class="ar-only">لا يتم طلب أو جمع أي بيانات شخصية (مثل الاسم، الموقع، أو جهات الاتصال).</span>
+              <span class="en-only">Zero Personally Identifiable Information (no names, GPS, or contacts collected).</span>
+            </li>
+            <li>
+              <span>✔</span>
+              <span class="ar-only">إمكانية تصفير وتهيئة كافة ملفات القضايا بضغطة زر واحدة في أي وقت.</span>
+              <span class="en-only">Full control to reset all case files instantly from the app settings menu.</span>
+            </li>
+            <li>
+              <span>✔</span>
+              <span class="ar-only">إعلانات آمنة تماماً ومتوافقة مع ضوابط عائلة Google Play.</span>
+              <span class="en-only">Safe advertising strictly compliant with Google Play Families & COPPA policies.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="privacy-badge-box">
+          <div class="shield-icon">🛡️</div>
+          <h4 style="color: var(--gold);" class="ar-only">وثيقة الخصوصية المعتمدة</h4>
+          <h4 style="color: var(--gold);" class="en-only">Official Privacy Policy</h4>
+          <p style="color: var(--text-muted); font-size: 13px;" class="ar-only">
+            راجع الوثيقة الكاملة المعتمدة لدى متجر Google Play باللغتين العربية والإنجليزية.
+          </p>
+          <p style="color: var(--text-muted); font-size: 13px;" class="en-only">
+            Read the comprehensive Google Play compliance document in Arabic & English.
+          </p>
+          <a href="privacy.html" class="btn-primary" style="padding: 10px 22px; font-size: 13px;">
+            <span class="ar-only">قراءة سياسة الخصوصية 📜</span>
+            <span class="en-only">Read Privacy Policy 📜</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Support & Contact Section -->
+    <section id="contact" style="padding-top: 20px;">
+      <div class="section-head">
+        <span class="section-tag ar-only">قنوات التواصل والدعم</span>
+        <span class="section-tag en-only">Contact & Official Support</span>
+        <h2 class="section-title ar-only">نحن هنا لدعمك دائماً</h2>
+        <h2 class="section-title en-only">We Are Always Here to Assist You</h2>
+        <p class="section-subtitle ar-only">
+          إذا كانت لديك أي استفسارات، ملاحظات تقنية، أو أسئلة حول سياسة الخصوصية وأسلوب اللعب، يسعدنا تواصلك مع فريق التطوير مباشرة عبر البريد المعتمد:
+        </p>
+        <p class="section-subtitle en-only">
+          If you have questions, technical bug reports, or privacy inquiries, contact the development team directly at our official email:
+        </p>
+        <div style="margin-top: 24px;">
+          <a href="mailto:detectivearkan@gmail.com" class="support-badge" style="font-size: 16px; padding: 12px 28px;">
+            <span>✉️</span>
+            <span>detectivearkan@gmail.com</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-top">
+        <div class="logo">
+          <div class="logo-img-wrapper" style="width: 40px; height: 40px;">
+            <img src="app_icon.png" alt="ARKAN Icon" class="logo-img">
+          </div>
+          <div class="logo-text-box">
+            <span class="logo-brand" style="font-size: 17px;">ARKAN</span>
+            <span class="logo-sub">CRIMINAL INVESTIGATION</span>
+          </div>
+        </div>
+
+        <div class="footer-links">
+          <a href="#features"><span class="ar-only">المميزات</span><span class="en-only">Features</span></a>
+          <a href="privacy.html"><span class="ar-only">سياسة الخصوصية</span><span class="en-only">Privacy Policy</span></a>
+          <a href="mailto:detectivearkan@gmail.com">detectivearkan@gmail.com</a>
+        </div>
+      </div>
+
+      <div class="footer-divider"></div>
+
+      <div class="footer-bottom">
+        <div>
+          <span class="ar-only">جميع الحقوق محفوظة © 2026 فريق تطوير أركان للتحقيق الجنائي (ARKAN Detective Team).</span>
+          <span class="en-only">All rights reserved © 2026 ARKAN Criminal Investigation Team.</span>
+        </div>
+        <div>
+          <code>Package: com.arkan.detective</code>
+        </div>
+      </div>
     </div>
   </footer>
+
+  <!-- Language Switcher Script -->
+  <script>
+    function updateLanguageUI(lang) {
+      document.documentElement.lang = lang;
+      document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+      
+      const btnText = document.getElementById('langBtnText');
+      if (btnText) {
+        btnText.textContent = (lang === 'ar') ? 'English' : 'العربية';
+      }
+
+      // Update page title
+      if (lang === 'ar') {
+        document.title = 'أركان للتحقيق الجنائي | ARKAN: Criminal Investigation - الموقع الرسمي';
+      } else {
+        document.title = 'ARKAN: Criminal Investigation | Official Detective Mystery Game';
+      }
+    }
+
+    function toggleLanguage() {
+      const currentLang = document.documentElement.lang || 'ar';
+      const newLang = (currentLang === 'ar') ? 'en' : 'ar';
+      localStorage.setItem('arkan_lang', newLang);
+      updateLanguageUI(newLang);
+    }
+
+    // Initialize UI on DOMContentLoaded
+    document.addEventListener('DOMContentLoaded', function() {
+      const activeLang = document.documentElement.lang || 'ar';
+      updateLanguageUI(activeLang);
+    });
+  </script>
 </body>
 </html>
